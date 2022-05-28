@@ -1,2 +1,8 @@
 flask
 gunicorn
+translate
+pillow
+numpy
+dill
+cv2
+pytesseract
