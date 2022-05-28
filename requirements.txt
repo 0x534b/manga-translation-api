@@ -4,5 +4,5 @@ translate
 pillow
 numpy
 dill
-opencv-py
+opencv-python
 pytesseract
