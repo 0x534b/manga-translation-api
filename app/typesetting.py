@@ -1,4 +1,5 @@
 import math
+import os
 
 # from guo import grace
 from PIL import Image, ImageDraw, ImageFont
@@ -66,7 +67,8 @@ def typeset_bubble(img, bubble):
         text = bubble.text
 
     area = bubble.w * bubble.h
-    font = ImageFont.truetype("MSMINCHO.TTF")#font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', size=fontsize)
+    # font = ImageFont.truetype("Arial.ttf")
+    # font = ImageFont.truetype("app/unifont-14.0.03.ttf")#font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', size=fontsize)
     draw_thingo = ImageDraw.Draw(img)
     wrap = text_wrap(text, bubble.w)
     size = draw_thingo.textsize(wrap)

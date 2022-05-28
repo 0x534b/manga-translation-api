@@ -16,6 +16,7 @@ from .typesetting import typeset_bubble
 def translate_text(text):
     translator = Translator()
     translated = translator.translate(text, src="ja", dest="en").text
+    translated = translated.encode("latin-1", "ignore").decode("latin-1")
     return translated
 
  
