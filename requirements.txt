@@ -1,8 +1,9 @@
 flask
-gunicorn
+# gunicorn
 translate
 pillow
 numpy
 dill
 opencv-python
 pytesseract
+waitress

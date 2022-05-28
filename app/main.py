@@ -2,6 +2,7 @@ from flask import Flask
 from translate import Translator
 
 from urllib import request
+import urllib.request
 import tempfile
 
 app = Flask(__name__)
@@ -9,6 +10,14 @@ app = Flask(__name__)
 @app.route("/")
 def home_page():
     return f"<h1>out</h1>"
+
+    # temp = tempfile.TemporaryFile()
+    # temp.write(url)
+
+    # urllib.request.urlretrieve(url, filename)
+
+
+    # temp.close()
 
     # tempthing = request.urlopen(url)
 
