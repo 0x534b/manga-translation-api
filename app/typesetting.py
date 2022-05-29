@@ -48,7 +48,7 @@ def text_wrap(text, w, font=None, min_word_on_line=0.3):
                 line = ""
 
             else:
-                split = max(int(fit * len(c_text)) / 2, 1)
+                split = max(int(fit * len(c_text)) // 2, 1)
                 c_text = c_text[:split] + "-"
                 lines.append(c_text)
                 idx += len(c_text) - 1

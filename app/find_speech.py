@@ -84,7 +84,8 @@ def get_bubbles(img):
     # find contours for the mask for a second pass after pruning the large and small contours
     cv2.drawContours(mask, pruned_contours, -1, (255,255,255), 1)
 
-    Image.fromarray(mask).save('oi.jpg')
+    # shows contours in oi.jpg for most recent translation (debugging)
+    # Image.fromarray(mask).save('oi.jpg')
 
     new_contours, hierarchy = cv2.findContours(mask,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
     # final_mask = cv2.cvtColor(np.zeros_like(img), cv2.COLOR_BGR2GRAY)
