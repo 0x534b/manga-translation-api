@@ -20,6 +20,7 @@ def translate_text(text):
     return translated
 
 
+# returns 
 def translate_image(filename):
     img = cv2.imread(filename)
 
@@ -28,17 +29,16 @@ def translate_image(filename):
         # do a thing the image is badd
         return None
 
-    bubbles = get_bubbles(img)
+    bubbles = get_bubbles(img) # returns list of text bubbles
     base_img = Image.fromarray(img.copy())
 
-    # print('oi')
-
-    for bubble in bubbles:
+    for bubble in bubbles: # translates each bubble
         translated = translate_bubble(bubble)
         # print(f"bubble:\n{bubble.clean_text()}\n{translated.translation}\n")
-        typeset_bubble(base_img, translated)
+        typeset_bubble(base_img, translated) # puts translated text on bubble
 
     return base_img
+
 
 # returns translated speech bubble object
 def translate_bubble(bubble):

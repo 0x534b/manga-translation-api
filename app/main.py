@@ -7,10 +7,12 @@ from uuid import uuid4
 # import dill as pickle
 
 from flask import Flask, request, send_file
+from flask_cors import CORS
 
 from .image_processing import translate_image
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def home_page():
@@ -43,4 +45,9 @@ def home_page():
     translated_image.save(img_io, 'JPEG')
     img_io.seek(0)
 
-    return send_file(img_io, mimetype='image/jpeg')
+    resp = send_file(img_io, mimetype='image/jpeg')
+
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.status_code = 201
+
+    return resp

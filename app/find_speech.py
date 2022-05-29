@@ -5,7 +5,7 @@ import cv2
 
 from PIL import Image
 from pytesseract import image_to_string
-# import dill as pickle
+
 
 class Bubble(object):
     def __init__(self, x, y, w, h, text):
@@ -23,6 +23,7 @@ class Bubble(object):
     def __unicode__(self):
         return str(self.x)+','+str(self.y)+' '+str(self.w)+'x'+str(self.h)+' '+ self.text
 
+
 class TranslatedBubble(Bubble):
     def __init__(self, x, y, w, h, text, translation):
         Bubble.__init__(self, x, y, w, h, text)
@@ -37,6 +38,7 @@ class TranslatedBubble(Bubble):
                     parent.text,
                     translation)
 
+# parameters helpful for increasing tesseract-ocr accuracy for Japanese
 def tesseract_params():
     params = ""
     params += "--psm 12"
@@ -55,6 +57,8 @@ def tesseract_params():
     params += " ".join([configParam(p[0], p[1]) for p in configParams])
     return params
 
+
+# find and returns a list of text bubbles 
 def get_bubbles(img): 
     # preprocess image for easier reading
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -91,13 +95,11 @@ def get_bubbles(img):
         area = cv2.contourArea(contour)
 
         # filter to only reasonable sized bubbles
-        if area > 5000:# and area < ((height / 1.5) * (width / 1.5)):
-            # print('good contour')
+        if area > 6000:
             drawing_mask = cv2.cvtColor(np.zeros_like(img), cv2.COLOR_BGR2GRAY)
 
-            # approximating polygonal curves ? shore 
+            # approximating polygonal curves  
             approx = cv2.approxPolyDP(contour, 0.01 * cv2.arcLength(contour, True), True)
-
 
             cv2.fillPoly(drawing_mask, [approx], (255, 0, 0))
             
@@ -110,8 +112,6 @@ def get_bubbles(img):
 
             masked = masked[y:y + height, x:x + width]
             pil_cutout = Image.fromarray(masked)
-
-            # pil_cutout.save('yo.jpg')
 
             # run OCR
             text = image_to_string(pil_cutout, lang='jpn_vert', config=tesseract_params())

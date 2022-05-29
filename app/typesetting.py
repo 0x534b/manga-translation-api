@@ -67,14 +67,15 @@ def typeset_bubble(img, bubble):
         text = bubble.text
 
     area = bubble.w * bubble.h
-    # font = ImageFont.truetype("Arial.ttf")
+    font_size = 16
+    font = ImageFont.truetype("arial.ttf", font_size)
     # font = ImageFont.truetype("app/unifont-14.0.03.ttf")#font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', size=fontsize)
     draw_thingo = ImageDraw.Draw(img)
-    wrap = text_wrap(text, bubble.w)
-    size = draw_thingo.textsize(wrap)
+    wrap = text_wrap(text, bubble.w, font=font)
+    size = draw_thingo.textsize(wrap, font=font)
     
     x = (bubble.x + bubble.w // 2) - (size[0] // 2)
     y = (bubble.y + bubble.h // 2) - (size[1] // 2)
     
     img.paste((255,255,255), (x, y, x + size[0], y + size[1]))
-    draw_thingo.text((x,y), wrap.strip(), fill=(0,0,0)) #yessir
+    draw_thingo.text((x,y), wrap.strip(), fill=(0,0,0), font=font) #yessir
