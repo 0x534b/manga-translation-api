@@ -1,9 +1,8 @@
-flask
-# gunicorn
-translate
-pillow
 numpy
-dill
+flask
+googletrans==3.1.0a0
 opencv-python
+pillow
 pytesseract
+requests
 waitress

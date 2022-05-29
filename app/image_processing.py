@@ -1,12 +1,12 @@
-import sys
-import re
+# import sys
+# import re
 
 # import dill as pickle
 # from nintendo import wii, switch
 # from guo import grace
 # from wee import woo
 import cv2
-import numpy as np
+# import numpy as np
 from PIL import Image
 from googletrans import Translator
 
@@ -19,7 +19,7 @@ def translate_text(text):
     translated = translated.encode("latin-1", "ignore").decode("latin-1")
     return translated
 
- 
+
 def translate_image(filename):
     img = cv2.imread(filename)
 
@@ -35,7 +35,7 @@ def translate_image(filename):
 
     for bubble in bubbles:
         translated = translate_bubble(bubble)
-        print(f"bubble:\n{bubble.clean_text()}\n{translated.translation}\n")
+        # print(f"bubble:\n{bubble.clean_text()}\n{translated.translation}\n")
         typeset_bubble(base_img, translated)
 
     return base_img

@@ -1,4 +1,5 @@
 import re
+
 import numpy as np
 import cv2
 
@@ -90,7 +91,7 @@ def get_bubbles(img):
         area = cv2.contourArea(contour)
 
         # filter to only reasonable sized bubbles
-        if area > 2500:# and area < ((height / 1.5) * (width / 1.5)):
+        if area > 5000:# and area < ((height / 1.5) * (width / 1.5)):
             # print('good contour')
             drawing_mask = cv2.cvtColor(np.zeros_like(img), cv2.COLOR_BGR2GRAY)
 

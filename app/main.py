@@ -1,7 +1,7 @@
 import os
 from io import BytesIO
 import requests
-import tempfile
+# import tempfile
 # import urllib
 from uuid import uuid4
 # import dill as pickle
@@ -24,8 +24,10 @@ def home_page():
         return f"<p>Exception encountered requesting image URL: {e}</p>"
 
     # generate filename
-    # filename = os.path.join("./temp", str(uuid4()) + ".jpg")
-    filename = str(uuid4()) + ".jpg"
+    dirname = os.path.dirname(__file__)
+    dirname = os.path.join(dirname, "temp")
+    filename = os.path.join(dirname, str(uuid4()) + ".jpg")
+    # filename = str(uuid4()) + ".jpg"
 
     file = open(filename, "wb+")
     file.write(response.content)
